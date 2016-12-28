@@ -24,11 +24,12 @@ sigma = zeros(1, size(X, 2));
 %               each feature. 
 %
 % Hint: You might find the 'mean' and 'std' functions useful.
-%       
+%
+m= size(X,1);
+mu = sum(X,1) ./ m;           %compute col wise sum
+sigma =  std(X);
 
-
-
-
+X_norm = (X_norm - mu) ./ sigma;
 
 
 
