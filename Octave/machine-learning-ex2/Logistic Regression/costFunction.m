@@ -19,20 +19,30 @@ grad = zeros(size(theta));
 %
 % Note: grad should have the same dimensions as theta
 %
-X
+
 z = X*theta;
 h = sigmoid(z);
 
-sqrErrs = 0;
-for i = 1:m,
-    sqrErrs=sqrErrs + y(i)*log(h(i)) + (1-y(i))*log(1-h(i));
-end;
-J = -sqrErrs/m
+%   Logical implementation of costfunction
+%   sqrErrs = 0;
+%   for i = 1:m,
+%       sqrErrs=sqrErrs + y(i)*log(h(i)) + (1-y(i))*log(1-h(i));
+%   end;
+%   J = -sqrErrs/m
 
-temp = (h-y)';
-for i = 1:size(theta),
-    grad(i)= (temp * X(:,i))/m;
-end;
+%   Vectorised implementation of Cost function
+J = -(y' * log(h) + (1 .- y') * log(1 .- h))/m;
+
+
+%   Logical implementation of gradient function
+%   temp = (h-y)';
+%   for i = 1:size(theta),
+%       grad(i)= (temp * X(:,i))/m;
+%   end;
+
+%   Vectorised implementation of gradient function
+
+grad =(((h-y)' * X) ./ m)';
 
 
 
