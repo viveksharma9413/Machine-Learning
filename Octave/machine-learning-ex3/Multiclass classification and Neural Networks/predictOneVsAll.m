@@ -31,10 +31,13 @@ X = [ones(m, 1) X];
 %       
 
 h = sigmoid( all_theta *X');
-predictions = (h == max(h))';
-label_vector = 1:num_labels;
-label_vector=label_vector(:);
-p = predictions * label_vector;
+[hx,p] = max(h);
+ p=p(:);
+
+%predictions = (h == max(h))';
+%label_vector = 1:num_labels;
+%label_vector=label_vector(:);
+%p = predictions * label_vector;
 
 
 
