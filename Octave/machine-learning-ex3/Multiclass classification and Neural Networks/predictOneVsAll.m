@@ -30,9 +30,11 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
-
-
-
+h = sigmoid( all_theta *X');
+predictions = (h == max(h))';
+label_vector = 1:num_labels;
+label_vector=label_vector(:);
+p = predictions * label_vector;
 
 
 
