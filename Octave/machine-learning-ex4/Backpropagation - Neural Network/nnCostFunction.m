@@ -62,16 +62,17 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
-X = [ones(size(X,1),1) X];
+A1 = X = [ones(m,1) X];
+Z2 = A1 * Theta1';
 A2 = sigmoid(Theta1 * X')';
 A2 = [ones(size(A2,1),1) A2];             %add bias unit
-A3 = sigmoid(Theta2 * A2')';                % forward propagation output layer
+h = A3 = sigmoid(Theta2 * A2')';                % forward propagation output layer
 
-h=A3
 Y = zeros(size(h));
 for i = 1:m,
     Y(i,y(i)) = 1;
 end;
+
 J= -1/m .* sum(sum(Y .* log(h) + (1.-Y) .* log(1 .- h)));                           % cost function
 
 regularization_val = (lambda/(2*m))*(sum(sum(Theta1(:, 2:end).^2)) + sum(sum(Theta2(:,2:end).^2)));
@@ -80,6 +81,16 @@ J = J + regularization_val;                                                     
 
 % -------------------------------------------------------------
 
+Sigma3 = A3 - Y;
+Sigma2 = (Sigma3*Theta2 .* sigmoidGradient([ones(size(Z2, 1), 1) Z2]))(:, 2:end);
+
+
+Delta_1 = Sigma2'*A1;
+Delta_2 = Sigma3'*A2;
+
+
+Theta1_grad = Delta_1./m + (lambda/m)*[zeros(size(Theta1,1), 1) Theta1(:, 2:end)];
+Theta2_grad = Delta_2./m + (lambda/m)*[zeros(size(Theta2,1), 1) Theta2(:, 2:end)];
 
 % =========================================================================
 
