@@ -62,22 +62,17 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+X = [ones(size(X,1),1) X];
+A2 = sigmoid(Theta1 * X')';
+A2 = [ones(size(A2,1),1) A2];             %add bias unit
+h = sigmoid(Theta2 * A2')';                % forward propagation output layer
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Y = zeros(size(h));
+for i = 1:m,
+    Y(i,y(i)) = 1;
+end;
+J= -1/m .* sum(sum(Y .* log(h) + (1.-Y) .* log(1 .- h)));
 
 
 % -------------------------------------------------------------
