@@ -65,17 +65,21 @@ Theta2_grad = zeros(size(Theta2));
 X = [ones(size(X,1),1) X];
 A2 = sigmoid(Theta1 * X')';
 A2 = [ones(size(A2,1),1) A2];             %add bias unit
-h = sigmoid(Theta2 * A2')';                % forward propagation output layer
+A3 = sigmoid(Theta2 * A2')';                % forward propagation output layer
 
-
+h=A3
 Y = zeros(size(h));
 for i = 1:m,
     Y(i,y(i)) = 1;
 end;
-J= -1/m .* sum(sum(Y .* log(h) + (1.-Y) .* log(1 .- h)));
+J= -1/m .* sum(sum(Y .* log(h) + (1.-Y) .* log(1 .- h)));                           % cost function
 
+regularization_val = (lambda/(2*m))*(sum(sum(Theta1(:, 2:end).^2)) + sum(sum(Theta2(:,2:end).^2)));
+
+J = J + regularization_val;                                                         %Regularized cost function
 
 % -------------------------------------------------------------
+
 
 % =========================================================================
 
