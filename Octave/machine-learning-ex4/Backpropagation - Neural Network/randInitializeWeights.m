@@ -18,7 +18,9 @@ W = zeros(L_out, 1 + L_in);
 %
 % Note: The first column of W corresponds to the parameters for the bias unit
 %
-
+W1 = rand(L_out,L_in)
+W2 = ones(L_out,1)
+W = [W2 W1]
 
 
 
