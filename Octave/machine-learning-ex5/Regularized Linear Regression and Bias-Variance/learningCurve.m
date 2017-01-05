@@ -58,9 +58,6 @@ for i= 1:m,
     [error_train(i),grad] = linearRegCostFunction(X(1:i,:),y(1:i),theta,0);
     [error_val(i),grad] = linearRegCostFunction(Xval,yval,theta,0);
 end;
-error_train
-error_val
-
 
 % -------------------------------------------------------------
 
