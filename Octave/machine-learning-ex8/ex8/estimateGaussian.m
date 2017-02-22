@@ -23,8 +23,10 @@ sigma2 = zeros(n, 1);
 
 
 
-
-
+for i = 1:n,
+    mu(i) = sum(X(1:m,i))/m;
+    sigma2(i) = sum((X(1:m,i) .- mu(i)).^2)/m;
+end;
 
 
 
