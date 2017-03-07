@@ -19,11 +19,13 @@ grad = zeros(size(theta));
 %               You should set J to the cost and grad to the gradient.
 %
 
+
 hypothesis = X*theta;
 theta(1)=0;
 J = 1/(2*m)  * (sum((hypothesis - y).^2) + lambda * sum(theta.^2));
 
 grad = 1/m .* X' * (hypothesis - y) + lambda/m .* theta;
+
 
 
 
