@@ -11,10 +11,17 @@ figure; hold on;
 %               2D plot, using the option 'k+' for the positive
 %               examples and 'ko' for the negative examples.
 %
-
-
-
-
+y
+x1 = X(:,1);
+x2 = X(:,2);
+for i=1:size(y),
+    if(y(i)==1),
+        plot(x1(i),x2(i),'k+');
+    end;
+    if(y(i)==0),
+        plot(x1(i),x2(i),'ko');
+    end;
+end;
 
 
 
