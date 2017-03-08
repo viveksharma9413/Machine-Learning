@@ -15,3 +15,6 @@ X_train,X_test,y_train,y_test = train_test_split(X,y,train_size=2/3,random_state
 from sklearn.linear_model import LinearRegression
 regressor = LinearRegression()              #Machine
 regressor.fit(X_train,y_train)              #Making the machine to learn
+
+#predicting
+y_pred = regressor.predict(X_test)
