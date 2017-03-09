@@ -22,3 +22,9 @@ X = X[:,1:]
 #splitting the dataset into traing and test datasets
 from sklearn.model_selection import train_test_split
 X_train,X_test,y_train,y_test = train_test_split(X,y,train_size=0.8)
+
+from sklearn.linear_model import LinearRegression
+regressor = LinearRegression()
+regressor.fit(X_train,y_train)
+
+y_pred = regressor.predict(X_test)
