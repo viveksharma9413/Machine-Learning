@@ -12,10 +12,32 @@ from sklearn.linear_model import LinearRegression
 linear_reg = LinearRegression()
 linear_reg.fit(X,y)
 
+# visualization of Linear Regression
+plt.scatter(X,y,color='cyan')
+plt.plot(X,linear_reg.predict(X),color='red')
+plt.title('Truth or Bluff (Linear Regression)')
+plt.xlabel('Job Levels')
+plt.ylabel('Salary')
+plt.show()
+
 # Fitting polynomial regression to the dataset
 """Converting X feature matrix to polynomial feature matrix"""
 from sklearn.preprocessing import PolynomialFeatures
-poly_reg =PolynomialFeatures(degree=2)
-X_poly = poly_reg.fit_transform(X)
-lin_reg2 = LinearRegression()
-lin_reg2.fit(X_poly,y)
+
+for deg in range(2,5):
+    poly_reg =PolynomialFeatures(degree=deg)
+    X_poly = poly_reg.fit_transform(X)
+    lin_reg2 = LinearRegression()
+    lin_reg2.fit(X_poly,y)
+
+    #visualization of Polynomial Regression
+    plt.scatter(X,y,color='cyan')
+    plt.plot(X,lin_reg2.predict(X_poly),color='red')
+    plt.title('Truth or Bluff (Polynomial Regression)')
+    plt.xlabel('Job Levels')
+    plt.ylabel('Salary')
+    fig = plt.figure(1)
+    fig.canvas.set_window_title('Polynomial Regression degree '+str(deg))
+    plt.show()
+    plt.savefig('Polynomial Regression degree '+str(deg)+'.png');
+
